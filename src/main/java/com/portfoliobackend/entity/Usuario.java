@@ -1,12 +1,15 @@
 package com.portfoliobackend.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -34,6 +37,15 @@ public class Usuario implements Serializable {
     private String titulo;
     @Column(name = "foto_perfil")
     private String fotoPerfil;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Experiencia> experiencias;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Educacion> educacion;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Habilidad> habilidades;
 
     public Usuario() {
     }
