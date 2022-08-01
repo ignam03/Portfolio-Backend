@@ -2,6 +2,7 @@ package com.portfoliobackend.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,24 +42,24 @@ public class Usuario implements Serializable {
 
     @OneToMany(
         mappedBy = "usuario",
-        fetch = FetchType.EAGER
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL
     )
     private List<Educacion> educacionList;
 
-    // @OneToMany(
-    //     mappedBy = "usuario1",
-    //     fetch = FetchType.LAZY
-    // )
-    // private List<Experiencia> experienciaList;
+    @OneToMany(
+        mappedBy = "usuario1",
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL
+    )
+    private Set<Experiencia> experienciaList;
 
-    
-
-    // @OneToMany(
-    //     mappedBy = "habId",
-    //     fetch = FetchType.LAZY,
-    //     cascade = CascadeType.ALL
-    // )
-    // private List<Habilidad> habilidadList;
+    @OneToMany(
+        mappedBy = "usuario2",
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL
+    )
+    private Set<Habilidad> habilidadList;
 
     public Usuario() {
     }

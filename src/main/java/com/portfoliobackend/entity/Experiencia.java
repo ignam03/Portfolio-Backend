@@ -36,11 +36,11 @@ public class Experiencia implements Serializable {
     private int fechaExp;
     
 
-    // @ManyToOne(
-    //     optional = true,
-    //     fetch = FetchType.LAZY
-    // )
-    // private Usuario usuario1;
+    @ManyToOne(
+        optional = true,
+        fetch = FetchType.EAGER
+    )
+    private Usuario usuario1;
 
     public Experiencia() {
     }

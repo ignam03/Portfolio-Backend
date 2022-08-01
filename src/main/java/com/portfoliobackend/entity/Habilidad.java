@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -28,6 +30,12 @@ public class Habilidad implements Serializable {
     private String nombreHab;
     @Column(name = "porcentaje_hab")
     private String porcentaje;
+
+    @ManyToOne(
+        optional = true,
+        fetch = FetchType.EAGER
+    )
+    private Usuario usuario2;
 
     public Habilidad() {
     }
