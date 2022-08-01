@@ -17,7 +17,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "usuarios")
 @Component
-@Getter @Setter
+@Getter
+@Setter
 public class Usuario implements Serializable {
 
     @Id
@@ -52,5 +53,4 @@ public class Usuario implements Serializable {
                 + ", nombre=" + nombre + ", titulo=" + titulo + ", userId=" + userId + "]";
     }
 
-    
 }
