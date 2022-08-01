@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -32,6 +34,13 @@ public class Experiencia implements Serializable {
     private String imgExp;
     @Column(name = "fecha_experiencia")
     private int fechaExp;
+    
+
+    // @ManyToOne(
+    //     optional = true,
+    //     fetch = FetchType.LAZY
+    // )
+    // private Usuario usuario1;
 
     public Experiencia() {
     }

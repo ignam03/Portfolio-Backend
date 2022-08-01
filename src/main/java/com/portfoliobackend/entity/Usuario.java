@@ -3,6 +3,7 @@ package com.portfoliobackend.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,14 +39,26 @@ public class Usuario implements Serializable {
     @Column(name = "foto_perfil")
     private String fotoPerfil;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Experiencia> experiencias;
+    @OneToMany(
+        mappedBy = "usuario",
+        fetch = FetchType.EAGER
+    )
+    private List<Educacion> educacionList;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Educacion> educacion;
+    // @OneToMany(
+    //     mappedBy = "usuario1",
+    //     fetch = FetchType.LAZY
+    // )
+    // private List<Experiencia> experienciaList;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Habilidad> habilidades;
+    
+
+    // @OneToMany(
+    //     mappedBy = "habId",
+    //     fetch = FetchType.LAZY,
+    //     cascade = CascadeType.ALL
+    // )
+    // private List<Habilidad> habilidadList;
 
     public Usuario() {
     }

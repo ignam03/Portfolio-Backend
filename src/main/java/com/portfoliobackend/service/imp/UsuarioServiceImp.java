@@ -13,7 +13,7 @@ import com.portfoliobackend.service.IUsuarioService;
 public class UsuarioServiceImp implements IUsuarioService {
 
     @Autowired
-    private  UsuarioRepository usuarioDaoImp;
+    private UsuarioRepository usuarioDaoImp;
 
     @Override
     public void saveUsuario(Usuario usuario) {

@@ -39,7 +39,7 @@ public class EducacionServiceImp implements IEducacionService {
 
     @Override
     public Educacion modifyEducacion(Educacion educacion) throws Exception {
-        Educacion educacionGuardar = findEducacion(educacion.getEducacionId());
+        Educacion educacionGuardar = findEducacion(educacion.getEduId());
         mapearEducacion(educacionGuardar, educacion);
         return educacionRepository.save(educacionGuardar);
     }
