@@ -17,14 +17,15 @@ import com.portfoliobackend.entity.Usuario;
 import com.portfoliobackend.service.IUsuarioService;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/portfolio")
+@Controller
 public class UsuarioController {
 
     @Autowired
     @Qualifier("UsuarioServiceImp")
     private IUsuarioService usuarioSvc;
 
-    @PostMapping("/new")
+    @PostMapping("/nuevo")
     public void agregarUsuario(@RequestBody Usuario usuario) {
         usuarioSvc.saveUsuario(usuario);
     }
