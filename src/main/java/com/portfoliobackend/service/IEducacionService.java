@@ -12,7 +12,7 @@ public interface IEducacionService {
 
     public Educacion findEducacion(Long id) throws Exception;
 
-    public void detectEducacion(Long id);
+    public void deleteEducacion(Long id);
 
     public Educacion modifyEducacion(Educacion eduacion) throws Exception;
 }

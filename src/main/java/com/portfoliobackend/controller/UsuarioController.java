@@ -26,8 +26,10 @@ public class UsuarioController {
     private IUsuarioService usuarioSvc;
 
     @PostMapping("/nuevo")
-    public void agregarUsuario(@RequestBody Usuario usuario) {
+    public String agregarUsuario(@RequestBody Usuario usuario) {
         usuarioSvc.saveUsuario(usuario);
+
+        return "Se ha creado correctamente el usuario";
     }
 
     @GetMapping("/ver/usuarios")
@@ -37,8 +39,9 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void borrarUsuario(@PathVariable Long id) {
+    public String borrarUsuario(@PathVariable Long id) {
         usuarioSvc.deleteUsuario(id);
+        return "Se ha eliminado correctamente el usuario";
     }
 
     @GetMapping("/ver/{id}")

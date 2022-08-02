@@ -23,7 +23,6 @@ public class EducacionServiceImp implements IEducacionService {
 
     @Override
     public List<Educacion> getEducacionList() {
-
         return educacionRepository.findAll();
     }
 
@@ -33,7 +32,7 @@ public class EducacionServiceImp implements IEducacionService {
     }
 
     @Override
-    public void detectEducacion(Long id) {
+    public void deleteEducacion(Long id) {
         educacionRepository.deleteById(id);
     }
 
