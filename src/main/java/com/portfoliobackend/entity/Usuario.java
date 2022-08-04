@@ -16,6 +16,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +27,7 @@ import lombok.Setter;
 @Component
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario implements Serializable {
 
     @Id
@@ -45,6 +49,8 @@ public class Usuario implements Serializable {
         fetch = FetchType.EAGER,
         cascade = CascadeType.ALL
     )
+    //uso para manejar las referencias bidireccionales padre
+    @JsonManagedReference
     private List<Educacion> educacionList;
 
     @OneToMany(
@@ -52,6 +58,8 @@ public class Usuario implements Serializable {
         fetch = FetchType.EAGER,
         cascade = CascadeType.ALL
     )
+    //uso para manejar las referencias bidireccionales padre
+    @JsonManagedReference
     private Set<Experiencia> experienciaList;
 
     @OneToMany(
@@ -59,6 +67,8 @@ public class Usuario implements Serializable {
         fetch = FetchType.EAGER,
         cascade = CascadeType.ALL
     )
+    //uso para manejar las referencias bidireccionales padre
+    @JsonManagedReference
     private Set<Habilidad> habilidadList;
 
     public Usuario() {

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,6 +42,8 @@ public class Experiencia implements Serializable {
         optional = true,
         fetch = FetchType.EAGER
     )
+    //uso para manejar las referencias bidireccionales hija
+    @JsonBackReference
     private Usuario usuario1;
 
     public Experiencia() {

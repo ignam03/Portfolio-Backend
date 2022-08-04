@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +24,7 @@ import lombok.Setter;
 @Component
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Habilidad implements Serializable {
 
     @Id
@@ -35,9 +39,12 @@ public class Habilidad implements Serializable {
         optional = true,
         fetch = FetchType.EAGER
     )
+    //uso para manejar las referencias bidireccionales hija
+    @JsonBackReference
     private Usuario usuario2;
 
     public Habilidad() {
+
     }
 
     public Habilidad(Long habId, String nombreHab, String porcentaje) {
