@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
     private String nombre;
     @Column(name = "apellido", nullable = false)
     private String apellido;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion",columnDefinition = "LONGTEXT")
     private String descripcion;
     @Column(name = "titulo", nullable = false)
     private String titulo;

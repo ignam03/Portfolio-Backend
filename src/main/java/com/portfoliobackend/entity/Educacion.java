@@ -34,6 +34,8 @@ public class Educacion implements Serializable {
     private String nombreInstituacion;
     @Column(name = "descripcion_edu")
     private String descripcionEdu;
+    @Column(name = "imagen_edu")
+    private String imagEdu;
     @Column(name = "fecha_inicio")
     private int fechaEdu;
 
