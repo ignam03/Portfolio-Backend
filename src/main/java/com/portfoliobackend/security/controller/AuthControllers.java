@@ -32,7 +32,7 @@ import com.portfoliobackend.security.repository.RolRepository;
 import com.portfoliobackend.security.repository.UserRepository;
 import com.portfoliobackend.security.service.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class AuthControllers {
