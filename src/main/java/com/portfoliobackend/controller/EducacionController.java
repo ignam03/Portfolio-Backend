@@ -2,8 +2,12 @@ package com.portfoliobackend.controller;
 
 import java.util.List;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,37 +22,40 @@ import com.portfoliobackend.service.IEducacionService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/educacion")
+@RequestMapping("/education")
 public class EducacionController {
 
     @Autowired
     @Qualifier("EducacionServiceImp")
     private IEducacionService educacionSvc;
 
-    @PostMapping("/nuevo")
-    public String agregarEducacion(@RequestBody Educacion educacion) {
+    private static final Log LOGGER = LogFactory.getLog(EducacionController.class);
+
+    @PostMapping("/new")
+    public ResponseEntity<HttpStatus> createEduaction(@RequestBody Educacion educacion) {
         educacionSvc.saveEducacion(educacion);
-        return "Se ha creado correctamente el usuario";
+        LOGGER.info("Education has Created");
+        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/todas")
-    public List<Educacion> getEducacionList() {
-        List<Educacion> listaEdu = educacionSvc.getEducacionList();
-        return listaEdu;
+    @GetMapping("/see/{id}")
+    public ResponseEntity<Educacion> getEducacion(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(educacionSvc.findEducacion(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public String borrarEducacion(@PathVariable Long id) {
+    @GetMapping("/see/all")
+    public ResponseEntity<List<Educacion>> getEducacionList() {
+        return new ResponseEntity<>(educacionSvc.getEducacionList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteEducation(@PathVariable Long id) {
         educacionSvc.deleteEducacion(id);
-        return "Se ha eliminado correctamente la educacion";
+        LOGGER.info("Education deleted successfully");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/{id}")
-    public Educacion getEducacion(@PathVariable Long id) throws Exception {
-        return educacionSvc.findEducacion(id);
-    }
-
-    @PostMapping("/editar/{id}")
+    @PostMapping("/edit/{id}")
     public Educacion editarEducacion(@RequestBody Educacion educacion) throws Exception {
         Educacion educacionUpd = educacionSvc.modifyEducacion(educacion);
         return educacionUpd;
