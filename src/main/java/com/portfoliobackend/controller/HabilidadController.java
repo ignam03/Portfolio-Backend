@@ -2,8 +2,12 @@ package com.portfoliobackend.controller;
 
 import java.util.List;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,27 +29,32 @@ public class HabilidadController {
     @Qualifier("HabilidadServiceImp")
     private IHabiliadadService habilidadSvc;
 
-    @PostMapping("/nueva")
-    public String agregarSkill(@RequestBody Habilidad habilidad) {
+    private static final Log LOGGER = LogFactory.getLog(HabilidadController.class);
+
+    @PostMapping("/new")
+    public ResponseEntity<HttpStatus> createSkill(@RequestBody Habilidad habilidad) {
         habilidadSvc.saveHabilidad(habilidad);
-        return "Se ha creado correctamente la skill";
+        LOGGER.info("Skill created");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/todas")
-    public List<Habilidad> getSkillList() {
-        List<Habilidad> listaSkills = habilidadSvc.getHabilidadList();
-        return listaSkills;
+    @GetMapping("/see/{id}")
+    public ResponseEntity<Habilidad> getSkill(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(habilidadSvc.findHabilidad(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public String borrarSkill(@PathVariable Long id) {
+    @GetMapping("/see/all")
+    public ResponseEntity<List<Habilidad>> getAllSkills() {
+        return new ResponseEntity<>(habilidadSvc.getHabilidadList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteSkill(@PathVariable Long id) {
         habilidadSvc.deleteHabilidad(id);
-        return "Se ha eliminado correctamente la skill";
+        LOGGER.info("Skill deleted successfully");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/{id}")
-    public Habilidad getSkills(@PathVariable Long id) throws Exception {
-        return habilidadSvc.findHabilidad(id);
-    }
 
+    //falta el put
 }
