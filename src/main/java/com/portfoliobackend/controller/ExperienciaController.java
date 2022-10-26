@@ -2,8 +2,12 @@ package com.portfoliobackend.controller;
 
 import java.util.List;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,37 +22,40 @@ import com.portfoliobackend.service.IExperienciaService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/experiencia")
+@RequestMapping("/experience")
 public class ExperienciaController {
 
     @Autowired
     @Qualifier("ExperienciaServiceImp")
     private IExperienciaService experienciaSvc;
 
-    @PostMapping("/nueva")
-    public String agregarExperiencia(@RequestBody Experiencia experiencia) {
+    private static final Log LOGGER = LogFactory.getLog(ExperienciaController.class);
+
+    @PostMapping("/new")
+    public ResponseEntity<HttpStatus> createExperience(@RequestBody Experiencia experiencia) {
         experienciaSvc.saveExperiencia(experiencia);
-        return "Se ha creado correctamente la experiencia";
+        LOGGER.debug("Experience created");
+        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/todas")
-    public List<Experiencia> getExperienciaList() {
-        List<Experiencia> listaExp = experienciaSvc.getExperienciaList();
-        return listaExp;
+    @GetMapping("/see/{id}")
+    public ResponseEntity<Experiencia> getExperience(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(experienciaSvc.findExperiencia(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public String borrarExperiencia(@PathVariable Long id) {
+    @GetMapping("/see/all")
+    public ResponseEntity<List<Experiencia>> getExperienceList() {
+        return new ResponseEntity<>(experienciaSvc.getExperienciaList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteExperience(@PathVariable Long id) {
         experienciaSvc.deleteExperiencia(id);
-        return "Se ha eliminado correctamente la experiencia";
+        LOGGER.info("Exper deleted successfully");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/ver/{id}")
-    public Experiencia getExperiencia(@PathVariable Long id) throws Exception {
-        return experienciaSvc.findExperiencia(id);
-    }
-
-    @PostMapping("/editar/{id}")
+    @PostMapping("/edit/{id}")
     public Experiencia editarEducacion(@RequestBody Experiencia experiencia) throws Exception {
         Experiencia experienciaUpd = experienciaSvc.modifyExperiencia(experiencia);
         return experienciaUpd;
