@@ -37,9 +37,13 @@ public class UsuarioServiceImp implements IUsuarioService {
     }
 
     @Override
-    public Usuario modifyUsuario(Usuario usuario) throws Exception {
-        Usuario usuarioGuardar = findUsuario(usuario.getUserId());
-        mapearUsuario(usuarioGuardar, usuario);
+    public Usuario modifyUsuario(Long idUsuario, Usuario usuario) throws Exception {
+        Usuario usuarioGuardar = findUsuario(idUsuario);
+        usuarioGuardar.setNombre(usuario.getNombre());
+        usuarioGuardar.setApellido(usuario.getApellido());
+        usuarioGuardar.setDescripcion(usuario.getDescripcion());
+        usuarioGuardar.setTitulo(usuario.getDescripcion());
+        usuarioGuardar.setFotoPerfil(usuario.getFotoPerfil());
         return usuarioDaoImp.save(usuarioGuardar);
     }
 

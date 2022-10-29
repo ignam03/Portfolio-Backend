@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,9 +57,11 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/edit/{id}")
-    public Usuario editarUsuario(@RequestBody Usuario usuario) throws Exception {
-        Usuario usuarioUpd = usuarioSvc.modifyUsuario(usuario);
-        return usuarioUpd;
+    @PutMapping("/edit/{idUsuario}")
+    public ResponseEntity<Usuario> editUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario)
+            throws Exception {
+        Usuario usuarioUpd = usuarioSvc.modifyUsuario(idUsuario, usuario);
+        LOGGER.info("Usuario has edit successfully");
+        return ResponseEntity.ok(usuarioUpd);
     }
 }
