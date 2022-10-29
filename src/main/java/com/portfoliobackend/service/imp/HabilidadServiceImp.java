@@ -37,9 +37,10 @@ public class HabilidadServiceImp implements IHabiliadadService {
     }
 
     @Override
-    public Habilidad modifyHabilidad(Habilidad habilidad) throws Exception {
-        Habilidad habilidadGuardar = findHabilidad(habilidad.getHabId());
-        mapearHabilidad(habilidadGuardar, habilidad);
+    public Habilidad modifyHabilidad(Long idSkill, Habilidad habilidad) throws Exception {
+        Habilidad habilidadGuardar = findHabilidad(idSkill);
+        habilidadGuardar.setNombreHab(habilidad.getNombreHab());
+        habilidadGuardar.setPorcentaje(habilidad.getPorcentaje());
         return habilidadRepository.save(habilidadGuardar);
     }
 
