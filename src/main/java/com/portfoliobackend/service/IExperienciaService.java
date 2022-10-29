@@ -14,5 +14,5 @@ public interface IExperienciaService {
 
     public void deleteExperiencia(Long id);
 
-    public Experiencia modifyExperiencia(Experiencia experiencia) throws Exception;
+    public Experiencia modifyExperiencia(Long idExp, Experiencia experiencia) throws Exception;
 }

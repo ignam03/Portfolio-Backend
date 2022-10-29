@@ -38,9 +38,12 @@ public class ExperienciaServiceImp implements IExperienciaService {
     }
 
     @Override
-    public Experiencia modifyExperiencia(Experiencia experiencia) throws Exception {
-        Experiencia experienciaGuardar = findExperiencia(experiencia.getExpId());
-        mapearExperiencia(experienciaGuardar, experiencia);
+    public Experiencia modifyExperiencia(Long idExp, Experiencia experiencia) throws Exception {
+        Experiencia experienciaGuardar = findExperiencia(idExp);
+        experienciaGuardar.setTituloExp(experiencia.getTituloExp());
+        experienciaGuardar.setDescExp(experiencia.getDescExp());
+        experienciaGuardar.setImgExp(experiencia.getImgExp());
+        experienciaGuardar.setFechaExp(experiencia.getFechaExp());
         return experienciaRepository.save(experienciaGuardar);
     }
 

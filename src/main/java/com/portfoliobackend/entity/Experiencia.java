@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -23,6 +25,8 @@ import lombok.Setter;
 @Component
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Experiencia implements Serializable {
 
     @Id
@@ -36,26 +40,11 @@ public class Experiencia implements Serializable {
     private String imgExp;
     @Column(name = "fecha_experiencia")
     private int fechaExp;
-    
 
-    @ManyToOne(
-        optional = true,
-        fetch = FetchType.EAGER
-    )
-    //uso para manejar las referencias bidireccionales hija
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    // uso para manejar las referencias bidireccionales hija
     @JsonBackReference
     private Usuario usuario1;
-
-    public Experiencia() {
-    }
-
-    public Experiencia(Long expId, String tituloExp, String descExp, String imgExp, int fechaExp) {
-        this.expId = expId;
-        this.tituloExp = tituloExp;
-        this.descExp = descExp;
-        this.imgExp = imgExp;
-        this.fechaExp = fechaExp;
-    }
 
     @Override
     public String toString() {

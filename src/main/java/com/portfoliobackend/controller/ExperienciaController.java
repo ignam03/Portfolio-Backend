@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,9 +56,11 @@ public class ExperienciaController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/edit/{id}")
-    public Experiencia editarEducacion(@RequestBody Experiencia experiencia) throws Exception {
-        Experiencia experienciaUpd = experienciaSvc.modifyExperiencia(experiencia);
-        return experienciaUpd;
+    @PutMapping("/edit/{idExp}")
+    public ResponseEntity<Experiencia> editarEducacion(@PathVariable Long idExp, @RequestBody Experiencia experiencia)
+            throws Exception {
+        Experiencia experienciaUpd = experienciaSvc.modifyExperiencia(idExp, experiencia);
+        LOGGER.info("Experience has edit successfully");
+        return ResponseEntity.ok(experienciaUpd);
     }
 }
