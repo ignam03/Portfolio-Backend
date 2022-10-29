@@ -14,5 +14,5 @@ public interface IEducacionService {
 
     public void deleteEducacion(Long id);
 
-    public Educacion modifyEducacion(Educacion eduacion) throws Exception;
+    public Educacion modifyEducacion(Long idEdu, Educacion eduacion) throws Exception;
 }

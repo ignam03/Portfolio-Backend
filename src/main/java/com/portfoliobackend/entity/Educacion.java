@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -23,6 +25,8 @@ import lombok.Setter;
 @Component
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Educacion implements Serializable {
 
     @Id
@@ -39,24 +43,16 @@ public class Educacion implements Serializable {
     @Column(name = "fecha_inicio")
     private int fechaEdu;
 
-    @ManyToOne(
-        optional = true,
-        fetch = FetchType.EAGER
-    )
-    //uso para manejar las referencias bidireccionales hija
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    // uso para manejar las referencias bidireccionales hija
     @JsonBackReference
     private Usuario usuario;
 
-
-    public Educacion() {
-    }
-
-    public Educacion(Long eduId, String titulo, String nombreInstituacion, String descripcionEdu, int fechaEdu) {
-        this.eduId = eduId;
-        this.titulo = titulo;
-        this.nombreInstituacion = nombreInstituacion;
-        this.descripcionEdu = descripcionEdu;
-        this.fechaEdu = fechaEdu;
+    @Override
+    public String toString() {
+        return "Educacion [eduId=" + eduId + ", titulo=" + titulo + ", nombreInstituacion=" + nombreInstituacion
+                + ", descripcionEdu=" + descripcionEdu + ", imagEdu=" + imagEdu + ", fechaEdu=" + fechaEdu
+                + ", usuario=" + usuario + "]";
     }
 
 }

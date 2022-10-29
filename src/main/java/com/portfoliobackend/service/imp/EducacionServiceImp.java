@@ -2,6 +2,8 @@ package com.portfoliobackend.service.imp;
 
 import java.util.List;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class EducacionServiceImp implements IEducacionService {
 
     @Autowired
     private EducacionRepository educacionRepository;
+
+    private static final Log LOGGER = LogFactory.getLog(EducacionServiceImp.class);
 
     @Override
     public void saveEducacion(Educacion eduacion) {
@@ -37,10 +41,14 @@ public class EducacionServiceImp implements IEducacionService {
     }
 
     @Override
-    public Educacion modifyEducacion(Educacion educacion) throws Exception {
-        Educacion educacionGuardar = findEducacion(educacion.getEduId());
-        mapearEducacion(educacionGuardar, educacion);
-        return educacionRepository.save(educacionGuardar);
+    public Educacion modifyEducacion(Long idEdu, Educacion educacion) throws Exception {
+        Educacion eToUpd = findEducacion(idEdu);
+        eToUpd.setTitulo(educacion.getTitulo());
+        eToUpd.setNombreInstituacion(educacion.getNombreInstituacion());
+        eToUpd.setDescripcionEdu(educacion.getDescripcionEdu());
+        eToUpd.setFechaEdu(educacion.getFechaEdu());
+        eToUpd.setImagEdu(educacion.getImagEdu());
+        return educacionRepository.save(eToUpd);
     }
 
     public void mapearEducacion(Educacion educacionFij, Educacion educacionUpd) {
@@ -48,6 +56,7 @@ public class EducacionServiceImp implements IEducacionService {
         educacionFij.setNombreInstituacion(educacionUpd.getNombreInstituacion());
         educacionFij.setDescripcionEdu(educacionUpd.getDescripcionEdu());
         educacionFij.setFechaEdu(educacionUpd.getFechaEdu());
+        educacionFij.setImagEdu(educacionUpd.getImagEdu());
 
     }
 }
