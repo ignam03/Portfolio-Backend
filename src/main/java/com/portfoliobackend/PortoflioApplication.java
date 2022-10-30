@@ -18,7 +18,7 @@ public class PortoflioApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("PUT", "DELETE",
+				registry.addMapping("/**").allowedOrigins("https://portfolio-frontend-76847.web.app").allowedMethods("PUT", "DELETE",
 						"GET", "POST");
 			}
 		};
