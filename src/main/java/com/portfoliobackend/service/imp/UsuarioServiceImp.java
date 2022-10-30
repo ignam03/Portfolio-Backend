@@ -42,7 +42,7 @@ public class UsuarioServiceImp implements IUsuarioService {
         usuarioGuardar.setNombre(usuario.getNombre());
         usuarioGuardar.setApellido(usuario.getApellido());
         usuarioGuardar.setDescripcion(usuario.getDescripcion());
-        usuarioGuardar.setTitulo(usuario.getDescripcion());
+        usuarioGuardar.setTitulo(usuario.getTitulo());
         usuarioGuardar.setFotoPerfil(usuario.getFotoPerfil());
         return usuarioDaoImp.save(usuarioGuardar);
     }
