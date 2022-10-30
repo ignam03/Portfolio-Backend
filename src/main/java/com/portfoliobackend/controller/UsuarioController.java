@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpStatusCodeException;
 
 import com.portfoliobackend.entity.Usuario;
+import com.portfoliobackend.security.entity.User;
+import com.portfoliobackend.security.repository.UserRepository;
 import com.portfoliobackend.service.IUsuarioService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,12 +34,21 @@ public class UsuarioController {
     @Qualifier("UsuarioServiceImp")
     private IUsuarioService usuarioSvc;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static final Log LOGGER = LogFactory.getLog(UsuarioController.class);
 
     @PostMapping("/new")
     public ResponseEntity<HttpStatusCodeException> createUser(@RequestBody Usuario usuario) {
         usuarioSvc.saveUsuario(usuario);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
         LOGGER.info("User created");
+        User userCreated = new User();
+        userCreated.setUsername(usuario.getNombre());
+        userCreated.setPassword(bCryptPasswordEncoder.encode(usuario.getApellido()));
+        userCreated.setEmail(usuario.getApellido() + "@gmail.com");
+        userRepository.save(userCreated);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
