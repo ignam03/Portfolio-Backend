@@ -39,7 +39,7 @@ public class Habilidad implements Serializable {
     @Column(name = "porcentaje_hab")
     private String porcentaje;
 
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
     @JsonBackReference
     private Usuario usuario2;

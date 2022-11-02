@@ -6,7 +6,7 @@ import com.portfoliobackend.entity.Habilidad;
 
 public interface IHabiliadadService {
 
-    public void saveHabilidad(Habilidad habilidad);
+    public void saveHabilidad(Habilidad habilidad , Long idUsuario) throws Exception;
 
     public List<Habilidad> getHabilidadList();
 

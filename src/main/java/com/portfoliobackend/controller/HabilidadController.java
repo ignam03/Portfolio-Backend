@@ -32,9 +32,10 @@ public class HabilidadController {
 
     private static final Log LOGGER = LogFactory.getLog(HabilidadController.class);
 
-    @PostMapping("/new")
-    public ResponseEntity<HttpStatus> createSkill(@RequestBody Habilidad habilidad) {
-        habilidadSvc.saveHabilidad(habilidad);
+    @PostMapping("/new/{idUsuario}")
+    public ResponseEntity<HttpStatus> createSkill(@RequestBody Habilidad habilidad, @PathVariable Long idUsuario)
+            throws Exception {
+        habilidadSvc.saveHabilidad(habilidad, idUsuario);
         LOGGER.info("Skill created");
         return new ResponseEntity<>(HttpStatus.OK);
     }

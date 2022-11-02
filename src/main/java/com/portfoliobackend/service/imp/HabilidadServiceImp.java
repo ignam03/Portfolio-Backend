@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.portfoliobackend.entity.Habilidad;
+import com.portfoliobackend.entity.Usuario;
 import com.portfoliobackend.repository.HabilidadRepository;
 import com.portfoliobackend.service.IHabiliadadService;
 
@@ -15,8 +16,13 @@ public class HabilidadServiceImp implements IHabiliadadService {
     @Autowired
     private HabilidadRepository habilidadRepository;
 
+    @Autowired
+    private UsuarioServiceImp usuarioSvc;
+
     @Override
-    public void saveHabilidad(Habilidad habilidad) {
+    public void saveHabilidad(Habilidad habilidad, Long idUsuario) throws Exception {
+        Usuario usr = usuarioSvc.findUsuario(idUsuario);
+        habilidad.setUsuario2(usr);
         habilidadRepository.save(habilidad);
     }
 
