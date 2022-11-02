@@ -37,7 +37,7 @@ public class Habilidad implements Serializable {
     @Column(name = "nombre_hab", unique = true)
     private String nombreHab;
     @Column(name = "porcentaje_hab")
-    private String porcentaje;
+    private Integer porcentaje;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
