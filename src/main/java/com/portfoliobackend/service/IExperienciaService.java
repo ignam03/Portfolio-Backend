@@ -6,7 +6,7 @@ import com.portfoliobackend.entity.Experiencia;
 
 public interface IExperienciaService {
 
-    public void saveExperiencia(Experiencia experiencia);
+    public void saveExperiencia(Experiencia experiencia ,Long idUsuario)throws Exception;
 
     public List<Experiencia> getExperienciaList();
 

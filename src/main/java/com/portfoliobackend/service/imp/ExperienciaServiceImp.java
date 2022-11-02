@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.portfoliobackend.entity.Experiencia;
+import com.portfoliobackend.entity.Usuario;
 import com.portfoliobackend.repository.ExperienciaRepository;
 import com.portfoliobackend.service.IExperienciaService;
 
@@ -15,8 +16,13 @@ public class ExperienciaServiceImp implements IExperienciaService {
     @Autowired
     private ExperienciaRepository experienciaRepository;
 
+    @Autowired
+    private UsuarioServiceImp usuarioSvc;
+
     @Override
-    public void saveExperiencia(Experiencia experiencia) {
+    public void saveExperiencia(Experiencia experiencia, Long idUsuario) throws Exception {
+        Usuario usr = usuarioSvc.findUsuario(idUsuario);
+        experiencia.setUsuario1(usr);
         experienciaRepository.save(experiencia);
 
     }

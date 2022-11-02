@@ -32,9 +32,10 @@ public class ExperienciaController {
 
     private static final Log LOGGER = LogFactory.getLog(ExperienciaController.class);
 
-    @PostMapping("/new")
-    public ResponseEntity<HttpStatus> createExperience(@RequestBody Experiencia experiencia) {
-        experienciaSvc.saveExperiencia(experiencia);
+    @PostMapping("/new/{idUsuario}")
+    public ResponseEntity<HttpStatus> createExperience(@RequestBody Experiencia experiencia,
+            @PathVariable Long idUsuario) throws Exception {
+        experienciaSvc.saveExperiencia(experiencia, idUsuario);
         LOGGER.debug("Experience created");
         return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }

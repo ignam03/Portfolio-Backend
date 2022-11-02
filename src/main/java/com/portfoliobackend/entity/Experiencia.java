@@ -41,7 +41,7 @@ public class Experiencia implements Serializable {
     @Column(name = "fecha_experiencia")
     private int fechaExp;
 
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
     @JsonBackReference
     private Usuario usuario1;
