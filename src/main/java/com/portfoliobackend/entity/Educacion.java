@@ -1,7 +1,6 @@
 package com.portfoliobackend.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +42,7 @@ public class Educacion implements Serializable {
     @Column(name = "fecha_inicio")
     private int fechaEdu;
 
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
     @JsonBackReference
     private Usuario usuario;

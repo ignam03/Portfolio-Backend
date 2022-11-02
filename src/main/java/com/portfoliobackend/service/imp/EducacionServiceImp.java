@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.portfoliobackend.entity.Educacion;
+import com.portfoliobackend.entity.Usuario;
 import com.portfoliobackend.repository.EducacionRepository;
+import com.portfoliobackend.repository.UsuarioRepository;
 import com.portfoliobackend.service.IEducacionService;
+import com.portfoliobackend.service.IUsuarioService;
 
 @Service("EducacionServiceImp")
 public class EducacionServiceImp implements IEducacionService {
@@ -17,10 +20,15 @@ public class EducacionServiceImp implements IEducacionService {
     @Autowired
     private EducacionRepository educacionRepository;
 
+    @Autowired
+    private UsuarioServiceImp usuarioSvc;
+
     private static final Log LOGGER = LogFactory.getLog(EducacionServiceImp.class);
 
     @Override
-    public void saveEducacion(Educacion eduacion) {
+    public void saveEducacion(Educacion eduacion, Long idusuario) throws Exception {
+        Usuario usr= usuarioSvc.findUsuario(idusuario);
+        eduacion.setUsuario(usr);
         educacionRepository.save(eduacion);
 
     }
@@ -37,6 +45,7 @@ public class EducacionServiceImp implements IEducacionService {
 
     @Override
     public void deleteEducacion(Long id) {
+        LOGGER.info("Deleting" + id);
         educacionRepository.deleteById(id);
     }
 

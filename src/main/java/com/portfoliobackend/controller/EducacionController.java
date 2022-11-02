@@ -32,9 +32,10 @@ public class EducacionController {
 
     private static final Log LOGGER = LogFactory.getLog(EducacionController.class);
 
-    @PostMapping("/new")
-    public ResponseEntity<HttpStatus> createEduaction(@RequestBody Educacion educacion) {
-        educacionSvc.saveEducacion(educacion);
+    @PostMapping("/new/{idUsuario}")
+    public ResponseEntity<HttpStatus> createEduaction(@RequestBody Educacion educacion, @PathVariable Long idUsuario)
+            throws Exception {
+        educacionSvc.saveEducacion(educacion, idUsuario);
         LOGGER.info("Education has Created");
         return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }

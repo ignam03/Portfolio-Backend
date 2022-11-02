@@ -6,7 +6,7 @@ import com.portfoliobackend.entity.Educacion;
 
 public interface IEducacionService {
 
-    public void saveEducacion(Educacion eduacion);
+    public void saveEducacion(Educacion eduacion, Long idUsuario)throws Exception;
 
     public List<Educacion> getEducacionList();
 
