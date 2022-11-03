@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    private String[] urlsV = {"/education/see/all", "/skills/see/all","/experience/see/all","/portfolio/see/all","/portfolio/see/user/1", "/portfolio/new"};
+    private String[] urlsV = {"/education/see/all", "/skills/see/all","/experience/see/all","/portfolio/see/all","/portfolio/see/user/1", "/portfolio/new/"};
 
     @Bean
     public PasswordEncoder passwordEncoder() {
