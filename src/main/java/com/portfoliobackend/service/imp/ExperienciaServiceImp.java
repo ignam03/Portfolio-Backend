@@ -49,7 +49,8 @@ public class ExperienciaServiceImp implements IExperienciaService {
         experienciaGuardar.setTituloExp(experiencia.getTituloExp());
         experienciaGuardar.setDescExp(experiencia.getDescExp());
         experienciaGuardar.setImgExp(experiencia.getImgExp());
-        experienciaGuardar.setFechaExp(experiencia.getFechaExp());
+        experienciaGuardar.setFechaIniExp(experiencia.getFechaIniExp());
+        experienciaGuardar.setFechaFinExp(experiencia.getFechaFinExp());
         return experienciaRepository.save(experienciaGuardar);
     }
 
@@ -57,7 +58,7 @@ public class ExperienciaServiceImp implements IExperienciaService {
         experienciaFij.setTituloExp(experienciaEdu.getTituloExp());
         experienciaFij.setDescExp(experienciaEdu.getDescExp());
         experienciaFij.setImgExp(experienciaEdu.getImgExp());
-        experienciaFij.setFechaExp(experienciaEdu.getFechaExp());
+        // experienciaFij.setFechaExp(experienciaEdu.getFechaExp());
     }
 
 }

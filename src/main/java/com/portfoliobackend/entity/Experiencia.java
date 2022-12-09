@@ -1,6 +1,7 @@
 package com.portfoliobackend.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +39,10 @@ public class Experiencia implements Serializable {
     private String descExp;
     @Column(name = "imagen_exp")
     private String imgExp;
-    @Column(name = "fecha_experiencia")
-    private int fechaExp;
+    @Column(name = "fecha_inicioExp")
+    private LocalDate fechaIniExp;
+    @Column(name = "fecha_finExp")
+    private LocalDate fechaFinExp;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
@@ -48,8 +51,13 @@ public class Experiencia implements Serializable {
 
     @Override
     public String toString() {
-        return "Experiencia [descExp=" + descExp + ", expId=" + expId + ", fechaExp=" + fechaExp + ", imgExp=" + imgExp
-                + ", tituloExp=" + tituloExp + "]";
+        return "Experiencia [expId=" + expId + ", tituloExp=" + tituloExp + ", descExp=" + descExp + ", imgExp="
+                + imgExp + ", fechaIniExp=" + fechaIniExp + ", fechaFinExp=" + fechaFinExp + ", usuario1=" + usuario1
+                + "]";
     }
+
+    
+
+    
 
 }

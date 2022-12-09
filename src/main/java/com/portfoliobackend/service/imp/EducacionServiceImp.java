@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import com.portfoliobackend.entity.Educacion;
 import com.portfoliobackend.entity.Usuario;
 import com.portfoliobackend.repository.EducacionRepository;
-import com.portfoliobackend.repository.UsuarioRepository;
 import com.portfoliobackend.service.IEducacionService;
-import com.portfoliobackend.service.IUsuarioService;
 
 @Service("EducacionServiceImp")
 public class EducacionServiceImp implements IEducacionService {
@@ -55,7 +53,8 @@ public class EducacionServiceImp implements IEducacionService {
         eToUpd.setTitulo(educacion.getTitulo());
         eToUpd.setNombreInstituacion(educacion.getNombreInstituacion());
         eToUpd.setDescripcionEdu(educacion.getDescripcionEdu());
-        eToUpd.setFechaEdu(educacion.getFechaEdu());
+        eToUpd.setFechaIni(educacion.getFechaIni());
+        eToUpd.setFechaFin(educacion.getFechaFin());
         eToUpd.setImagEdu(educacion.getImagEdu());
         return educacionRepository.save(eToUpd);
     }
@@ -64,7 +63,7 @@ public class EducacionServiceImp implements IEducacionService {
         educacionFij.setTitulo(educacionUpd.getTitulo());
         educacionFij.setNombreInstituacion(educacionUpd.getNombreInstituacion());
         educacionFij.setDescripcionEdu(educacionUpd.getDescripcionEdu());
-        educacionFij.setFechaEdu(educacionUpd.getFechaEdu());
+        //educacionFij.setFechaEdu(educacionUpd.getFechaEdu());
         educacionFij.setImagEdu(educacionUpd.getImagEdu());
 
     }

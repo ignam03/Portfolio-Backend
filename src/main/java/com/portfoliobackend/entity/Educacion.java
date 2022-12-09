@@ -1,6 +1,8 @@
 package com.portfoliobackend.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +42,9 @@ public class Educacion implements Serializable {
     @Column(name = "imagen_edu")
     private String imagEdu;
     @Column(name = "fecha_inicio")
-    private int fechaEdu;
+    private LocalDate fechaIni;
+    @Column(name = "fecha_fin")
+    private LocalDate fechaFin;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     // uso para manejar las referencias bidireccionales hija
@@ -50,8 +54,8 @@ public class Educacion implements Serializable {
     @Override
     public String toString() {
         return "Educacion [eduId=" + eduId + ", titulo=" + titulo + ", nombreInstituacion=" + nombreInstituacion
-                + ", descripcionEdu=" + descripcionEdu + ", imagEdu=" + imagEdu + ", fechaEdu=" + fechaEdu
-                + ", usuario=" + usuario + "]";
+                + ", descripcionEdu=" + descripcionEdu + ", imagEdu=" + imagEdu + ", fechaIni=" + fechaIni
+                + ", fechaFin=" + fechaFin + ", usuario=" + usuario + "]";
     }
 
 }
